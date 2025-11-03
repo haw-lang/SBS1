@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Security Headers for HTTPS -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- SEO & Social Media Meta Tags -->
+    <meta name="description" content="Discover Arthur Gordon's transformative journey from spiritual crisis to renewal through faith and action. An interactive experience about the power of combining faith with purposeful action.">
+    <meta name="keywords" content="faith, action, success, spiritual renewal, Arthur Gordon, Turn of the Tide, motivation, inspiration">
+    <meta name="author" content="Faith & Action Interactive">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="The Turn of the Tide - Faith & Action">
+    <meta property="og:description" content="An interactive journey from lost to found through faith and action">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/faith-and-action">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Turn of the Tide - Faith & Action">
+    <meta name="twitter:description" content="Discover the unstoppable formula: Faith + Action = Success">
+    
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href="https://yourdomain.com/faith-and-action">
+    
+    <title>The Turn of the Tide - Faith & Action</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom;
+            background-size: cover;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: white;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-intro {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .story-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Prescription Cards */
+        .prescriptions {
+            display: grid;
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .prescription-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prescription-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .prescription-card:hover::before {
+            left: 100%;
+        }
+
+        .prescription-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .prescription-card:nth-child(even) {
+            transform: translateX(50px);
+        }
+
+        .prescription-time {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .prescription-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .prescription-content {
+            line-height: 1.6;
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.5s ease;
+        }
+
+        .prescription-card.expanded .prescription-content {
+            opacity: 1;
+            max-height: 500px;
+            margin-top: 20px;
+        }
+
+        .expand-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .expand-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Faith Section */
+        .faith-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .faith-title {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease;
+        }
+
+        .faith-title.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .faith-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .faith-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .faith-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .faith-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .faith-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Action Section */
+        .action-section {
+            background: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .equation {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin: 40px 0;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .equation.visible {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        .action-quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #666;
+            margin: 40px auto;
+            max-width: 700px;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .action-quote.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive Button */
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Floating elements */
+        .floating {
+            position: fixed;
+            opacity: 0.1;
+            pointer-events: none;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-100px) translateX(100px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(-50px) translateX(-100px) rotate(240deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .faith-title {
+                font-size: 2rem;
+            }
+            .equation {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating" style="top: 10%; left: 10%; font-size: 100px;">✨</div>
+    <div class="floating" style="top: 70%; right: 10%; font-size: 80px; animation-delay: 3s;">🌊</div>
+    <div class="floating" style="top: 40%; left: 50%; font-size: 60px; animation-delay: 6s;">💫</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>The Turn of the Tide</h1>
+        <p>A Journey from Lost to Found Through Faith</p>
+        <div class="scroll-indicator" onclick="scrollToStory()">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <div class="story-intro">
+                <p>Arthur Gordon found himself in a terrifying state of being lost. Days passed where faith abandoned him, everything felt trivial and meaningless. His enthusiasm for work vanished, his writing became fruitless.</p>
+                <p>In desperation, he consulted a physician who found no physical illness. Instead, the doctor prescribed something extraordinary: a single day at the place of his happiest childhood memories, with four sealed envelopes to open at specific times...</p>
+            </div>
+
+            <div class="prescriptions">
+                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-time">9:00 AM</div>
+                    <div class="prescription-title">"Listen carefully and pay attention"</div>
+                    <button class="expand-btn">Read More</button>
+                    <div class="prescription-content">
+                        At first skeptical, Gordon opened his ears to the ocean. He heard waves, birds, then deeper sounds. The sea taught him patience, respect, interdependence. He listened not just to sounds but to silence itself. Tranquility began flowing within him.
+                    </div>
+                </div>
+
+                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-time">12:00 PM</div>
+                    <div class="prescription-title">"Try to reach back with your memory"</div>
+                    <button class="expand-btn">Read More</button>
+                    <div class="prescription-content">
+                        Gordon recalled his furthest childhood memories, the happy moments without worry, brief instances of joy. Through this remembering, warmth and self-confidence began growing in his depths, reconnecting him with who he once was.
+                    </div>
+                </div>
+
+                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-time">3:00 PM</div>
+                    <div class="prescription-title">"Examine your motives"</div>
+                    <button class="expand-btn">Read More</button>
+                    <div class="prescription-content">
+                        He delved deep into his motives—success, excellence, comfort—realizing these weren't enough. He discovered: "If a person's motives are wrong, nothing right can come from them. If your concern is helping yourself rather than others, you won't do your work well. But serve others, driven by higher values, and you'll perform excellently."
+                    </div>
+                </div>
+
+                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-time">6:00 PM</div>
+                    <div class="prescription-title">"Write your worries on the sand"</div>
+                    <button class="expand-btn">Read More</button>
+                    <div class="prescription-content">
+                        Gordon wrote his worries in the sand with a broken shell. As he walked away, the tide came in and erased every word. His worries, once so permanent in his mind, were swept away by nature's rhythm.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faith Section -->
+    <section class="faith-section">
+        <div class="container">
+            <h2 class="faith-title">The Power of Faith</h2>
+            
+            <div class="faith-grid">
+                <div class="faith-card">
+                    <div class="faith-icon">💧</div>
+                    <h3>Simple Faith</h3>
+                    <p>You need faith to simply stand and drink water - faith your legs work, your hands grasp, the water quenches.</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">🌟</div>
+                    <h3>Dream Faith</h3>
+                    <p>If drinking needs faith, how much more do your dreams need it? The God who gives you ability to drink can empower any goal.</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">💪</div>
+                    <h3>Active Faith</h3>
+                    <p>Faith fuels your work and destroys every obstacle: fear, doubt, anxiety, hesitation, envy, and laziness.</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">🔥</div>
+                    <h3>Courage Faith</h3>
+                    <p>What gives you courage like faith? What gives you confidence like faith? What gives you resolve like faith?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Section -->
+    <section class="action-section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 30px;">The Unstoppable Formula</h2>
+            
+            <div class="equation">FAITH + ACTION = SUCCESS</div>
+            
+            <div class="action-quote">
+                "Faith without action is empty. Action without faith is exhausting. Together, they're unstoppable."
+            </div>
+            
+            <p style="font-size: 1.2rem; color: #666; margin: 40px auto; max-width: 600px; line-height: 1.8;">
+                True faith isn't just belief - it's belief PLUS action working together. When you combine unwavering faith with determined action, you become a force that can overcome any challenge and achieve any dream.
+            </p>
+            
+            <button class="cta-button" onclick="showInspiration()">
+                Activate Your Faith Today
+            </button>
+        </div>
+    </section>
+
+    <script>
+        // Scroll to story section
+        function scrollToStory() {
+            document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle prescription cards
+        function toggleCard(card) {
+            card.classList.toggle('expanded');
+            const btn = card.querySelector('.expand-btn');
+            btn.textContent = card.classList.contains('expanded') ? 'Read Less' : 'Read More';
+        }
+
+        // Show elements on scroll
+        function handleScroll() {
+            const elements = document.querySelectorAll('.story-intro, .prescription-card, .faith-title, .faith-card, .equation, .action-quote');
+            
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight - 100;
+                
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Show inspiration message
+        function showInspiration() {
+            const messages = [
+                "Your journey begins with a single step of faith!",
+                "Today is the day to write your worries in the sand!",
+                "Listen to the wisdom around you - it's always speaking!",
+                "Your motives shape your destiny - choose service over self!",
+                "Remember: Even drinking water requires faith. You have what it takes!",
+                "The tide always turns. Your renewal is coming!"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+            
+            // Create floating inspiration
+            const inspiration = document.createElement('div');
+            inspiration.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px;
+                border-radius: 20px;
+                font-size: 1.5rem;
+                z-index: 1000;
+                animation: fadeInUp 0.5s ease;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            `;
+            inspiration.textContent = "✨ Your faith is activated! ✨";
+            document.body.appendChild(inspiration);
+            
+            setTimeout(() => {
+                inspiration.style.animation = 'fadeInUp 0.5s ease reverse';
+                setTimeout(() => inspiration.remove(), 500);
+            }, 2000);
+        }
+
+        // Add stagger effect to faith cards
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.faith-card');
+            cards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Initialize scroll listener
+        window.addEventListener('scroll', handleScroll);
+        
+        // Trigger initial check
+        setTimeout(handleScroll, 100);
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
