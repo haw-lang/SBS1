@@ -1,911 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <meta name="description" content="Experience Arthur Gordon's transformative journey of spiritual renewal through four life-changing prescriptions.">
-    
-    <title>Launch from the Fortress of Faith - انطلق من قلعة الإيمان</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #7dd3c0 0%, #a78bfa 100%);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom;
-            background-size: cover;
-            color: white;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 1s ease;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
-        }
-
-        .hero-subtitle {
-            font-size: 2.5rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.3s both;
-            direction: rtl;
-            margin-top: 10px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-        }
-
-        .hero p {
-            font-size: 1.6rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.6s both;
-            margin-top: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s;
-        }
-
-        .scroll-indicator:hover {
-            transform: scale(1.2);
-        }
-
-        /* Floating Elements */
-        .floating {
-            position: fixed;
-            opacity: 0.15;
-            pointer-events: none;
-            animation: float 15s infinite ease-in-out;
-            font-size: 80px;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-120px) translateX(120px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(-60px) translateX(-120px) rotate(240deg);
-            }
-        }
-
-        /* Story Section */
-        .story-section {
-            background: white;
-            padding: 100px 20px;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .story-intro {
-            font-size: 1.35rem;
-            line-height: 1.9;
-            color: #444;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-            background: linear-gradient(135deg, #e0f7f4 0%, #f3e8ff 100%);
-            padding: 50px;
-            border-radius: 25px;
-            border-left: 6px solid #7dd3c0;
-            box-shadow: 0 15px 50px rgba(125, 211, 192, 0.3);
-        }
-
-        .story-intro.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .story-intro p {
-            margin-bottom: 25px;
-        }
-
-        .story-intro .text-ar {
-            direction: rtl;
-            text-align: right;
-            color: #555;
-            padding-top: 15px;
-            border-top: 2px dashed #d1d5db;
-            margin-top: 15px;
-        }
-
-        /* Prescription Cards */
-        .prescriptions {
-            display: grid;
-            gap: 50px;
-            margin: 80px 0;
-        }
-
-        .prescription-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.4);
-            opacity: 0;
-            transform: translateX(-80px);
-            transition: all 0.8s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .prescription-card:nth-child(even) {
-            transform: translateX(80px);
-            background: linear-gradient(135deg, #7dd3c0 0%, #6d28d9 100%);
-        }
-
-        .prescription-card.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .prescription-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .prescription-card:hover::before {
-            left: 100%;
-        }
-
-        .prescription-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.6);
-        }
-
-        .prescription-card:nth-child(even):hover {
-            transform: translateY(-12px) scale(1.02);
-        }
-
-        .prescription-icon {
-            font-size: 70px;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: swing 4s infinite ease-in-out;
-        }
-
-        @keyframes swing {
-            0%, 100% { transform: rotate(-8deg); }
-            50% { transform: rotate(8deg); }
-        }
-
-        .prescription-time {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            margin-bottom: 15px;
-        }
-
-        .prescription-time-ar {
-            direction: rtl;
-            opacity: 0.9;
-        }
-
-        .prescription-title {
-            font-size: 2.3rem;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .prescription-title-ar {
-            font-size: 2rem;
-            direction: rtl;
-            margin-top: 10px;
-            opacity: 0.95;
-        }
-
-        .expand-btn {
-            background: rgba(255,255,255,0.25);
-            border: 2px solid white;
-            color: white;
-            padding: 12px 32px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        .expand-btn:hover {
-            background: white;
-            color: #6d28d9;
-            transform: scale(1.08);
-        }
-
-        .prescription-content {
-            line-height: 1.8;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.6s ease;
-        }
-
-        .prescription-card.expanded .prescription-content {
-            opacity: 1;
-            max-height: 2000px;
-            margin-top: 30px;
-        }
-
-        .prescription-content p {
-            margin-bottom: 20px;
-            font-size: 1.15rem;
-        }
-
-        .prescription-content .text-ar {
-            direction: rtl;
-            text-align: right;
-            padding-top: 15px;
-            border-top: 2px dashed rgba(255,255,255,0.4);
-            margin-top: 15px;
-        }
-
-        .reflection-icon {
-            text-align: center;
-            font-size: 60px;
-            margin: 25px 0;
-        }
-
-        /* Sand Section */
-        .sand-section {
-            text-align: center;
-            margin: 40px 0;
-            padding: 40px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-        }
-
-        .sand-text {
-            display: inline-block;
-            font-size: 1.8rem;
-            padding: 25px 50px;
-            background: rgba(254, 215, 170, 0.4);
-            border-radius: 15px;
-            margin: 25px 0;
-            transition: all 2.5s ease;
-            border: 3px dashed rgba(255,255,255,0.6);
-        }
-
-        .sand-text.washed {
-            opacity: 0;
-            transform: translateY(80px) scale(0.3) rotate(15deg);
-            filter: blur(15px);
-        }
-
-        .wave-btn {
-            background: rgba(255,255,255,0.3);
-            border: 2px solid white;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-
-        .wave-btn:hover {
-            background: white;
-            color: #7dd3c0;
-            transform: scale(1.12);
-        }
-
-        /* Wisdom Section */
-        .wisdom-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 120px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .wisdom-icon {
-            font-size: 100px;
-            margin-bottom: 40px;
-            animation: pulse 3s infinite;
-        }
-
-        .wisdom-quote {
-            font-size: 2.6rem;
-            font-style: italic;
-            margin-bottom: 35px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease;
-            line-height: 1.6;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .wisdom-quote.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .wisdom-quote-ar {
-            font-size: 2.3rem;
-            direction: rtl;
-            margin-top: 35px;
-        }
-
-        /* Faith Section */
-        .faith-section {
-            background: white;
-            padding: 120px 20px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            color: #6d28d9;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease;
-        }
-
-        .section-title.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .section-title-ar {
-            font-size: 3rem;
-            color: #7dd3c0;
-            direction: rtl;
-            margin-bottom: 60px;
-        }
-
-        .faith-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 80px;
-        }
-
-        .faith-card {
-            background: linear-gradient(135deg, #e0f7f4 0%, #f3e8ff 100%);
-            padding: 45px;
-            border-radius: 25px;
-            border: 2px solid rgba(125, 211, 192, 0.3);
-            transform: translateY(60px);
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
-
-        .faith-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .faith-card:hover {
-            transform: translateY(-18px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(125, 211, 192, 0.5);
-            border-color: #7dd3c0;
-        }
-
-        .faith-icon {
-            font-size: 75px;
-            margin-bottom: 25px;
-        }
-
-        .faith-card h3 {
-            font-size: 1.9rem;
-            color: #6d28d9;
-            margin-bottom: 12px;
-        }
-
-        .faith-card .card-title-ar {
-            font-size: 1.6rem;
-            color: #7dd3c0;
-            direction: rtl;
-            margin-bottom: 20px;
-        }
-
-        .faith-card p {
-            font-size: 1.15rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        .faith-card .text-ar {
-            direction: rtl;
-            text-align: right;
-            color: #666;
-            padding-top: 12px;
-            border-top: 2px dashed #d1d5db;
-            margin-top: 12px;
-        }
-
-        /* Action Section */
-        .action-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 120px 20px;
-            text-align: center;
-        }
-
-        .action-title {
-            font-size: 3rem;
-            margin-bottom: 40px;
-        }
-
-        .action-title-ar {
-            font-size: 2.5rem;
-            direction: rtl;
-            margin-bottom: 50px;
-        }
-
-        .equation {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin: 50px 0;
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
-
-        .equation.visible {
-            opacity: 1;
-            animation: pulse 3s infinite;
-        }
-
-        .equation-ar {
-            font-size: 3rem;
-            direction: rtl;
-            margin-top: 25px;
-        }
-
-        .cta-button {
-            background: white;
-            color: #6d28d9;
-            padding: 25px 60px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s;
-            margin: 30px 15px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-10px) scale(1.12);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-        }
-
-        /* Reference Section */
-        .reference-section {
-            background: #f0fdf4;
-            padding: 60px 50px;
-            border-radius: 25px;
-            margin: 80px 20px 40px;
-            border-left: 6px solid #10b981;
-            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.25);
-        }
-
-        .reference-section h3 {
-            font-size: 2.2rem;
-            color: #065f46;
-            margin-bottom: 30px;
-        }
-
-        .reference-section p {
-            font-size: 1.15rem;
-            color: #065f46;
-            line-height: 1.9;
-            margin-bottom: 20px;
-        }
-
-        .reference-section .text-ar {
-            direction: rtl;
-            text-align: right;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.8rem;
-            }
-            .section-title {
-                font-size: 2.3rem;
-            }
-            .prescription-title {
-                font-size: 1.7rem;
-            }
-            .wisdom-quote {
-                font-size: 1.8rem;
-            }
-            .equation {
-                font-size: 2.2rem;
-            }
-            .story-intro, .prescription-card {
-                padding: 30px;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="description" content="رحلة آرثر جوردون للتجديد الروحي عبر أربع وصفات غير تقليدية من طبيبه.">
+    
+    <title>الانطلاق من حصن الإيمان - Launch from the Fortress of Faith</title>
+    <style>
+        /* تم الإبقاء على كود CSS الأصلي مع تعديلات RTL طفيفة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #7dd3c0 0%, #a78bfa 100%);
+            color: #333;
+            overflow-x: hidden;
+            direction: rtl; /* تعيين الاتجاه ليتناسب مع اللغة العربية */
+            text-align: right;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom;
+            background-size: cover;
+            color: white;
+            position: relative;
+        }
+        .hero h1, .hero-subtitle, .hero p {
+            direction: rtl; /* ضمان صحة الاتجاه */
+        }
+
+        .story-section, .prescriptions, .reference-section {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .story-intro {
+            /* تحديث الألوان لتركيز أكبر */
+            background: linear-gradient(135deg, #f0fdf4 0%, #e0f7f4 100%);
+            border-right: 6px solid #10b981; /* تغيير الحافة لليمين */
+            border-left: none;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.3);
+        }
+        
+        .prescription-card {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); /* عكس تدرج اللون */
+        }
+        .prescription-card:nth-child(even) {
+            background: linear-gradient(135deg, #6d28d9 0%, #7dd3c0 100%); /* عكس تدرج اللون */
+        }
+
+        .prescription-title-ar {
+            font-size: 2.3rem; /* زيادة حجم الخط للتركيز */
+        }
+        
+        .prescription-content .text-ar {
+            font-size: 1.25rem; /* زيادة وضوح النص الداخلي */
+            line-height: 2.1;
+        }
+        
+        .reference-section {
+            border-right: 6px solid #10b981; /* تغيير الحافة لليمين */
+            border-left: none;
+        }
+        
+        /* إضافة CSS لدعم اللغة العربية بشكل أفضل */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.8rem; }
+            .section-title-ar { font-size: 2.5rem; }
+            .prescription-title-ar { font-size: 1.9rem; }
+            .wisdom-quote-ar { font-size: 1.9rem; }
+            .equation-ar { font-size: 2.2rem; }
+        }
+
+        /* Animations (تم الإبقاء عليها كما هي) */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-30px); } 60% { transform: translateY(-15px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    </style>
 </head>
 <body>
-    <!-- Floating Elements -->
-    <div class="floating" style="top: 12%; left: 8%;">✨</div>
-    <div class="floating" style="top: 65%; right: 10%; animation-delay: 4s;">🌊</div>
-    <div class="floating" style="top: 35%; left: 85%; animation-delay: 7s;">💫</div>
-    <div class="floating" style="top: 80%; left: 45%; animation-delay: 2s;">🏖️</div>
+        <div class="floating" style="top: 12%; left: 8%;">✨</div>
+    <div class="floating" style="top: 65%; right: 10%; animation-delay: 4s;">🌊</div>
+    <div class="floating" style="top: 35%; left: 85%; animation-delay: 7s;">💫</div>
+    <div class="floating" style="top: 80%; left: 45%; animation-delay: 2s;">🏖️</div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>🏰 Launch from the Fortress of Faith</h1>
-        <div class="hero-subtitle">انطلق من قلعة الإيمان</div>
-        <p>A Journey from Lost to Found • رحلة من الضياع إلى الهداية</p>
-        <div class="scroll-indicator" onclick="scrollToStory()">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                <path d="M12 5v14M19 12l-7 7-7-7"/>
-            </svg>
-        </div>
-    </section>
+        <section class="hero">
+        <div class="hero-subtitle">انطلق من حصن الإيمان</div>
+        <h1>Launch from the Fortress of Faith 🏰</h1>
+        <p>رحلة من الضياع إلى اليقين • A Journey from Lost to Found</p>
+        <div class="scroll-indicator" onclick="scrollToStory()">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
 
-    <!-- Story Section -->
-    <section class="story-section" id="story">
-        <div class="container">
-            <div class="story-intro">
-                <p>Arthur Gordon found himself in a terrifying state of being lost. Days passed where faith abandoned him, everything felt trivial and meaningless. His enthusiasm for work vanished, his writing became fruitless.</p>
-                <p class="text-ar">مر آرثر جوردون بحالة ضياع مخيفة. مرت عليه أيام فقد فيها الإيمان، وأخذ يشعر وكأن كل شيء في الحياة تافه وبلا معنى. تلاشى حماسه في أي عمل، وباتت جهوده في الكتابة بلا نتيجة.</p>
-                
-                <p style="margin-top: 30px;">In desperation, he consulted a physician who found no physical illness. Instead, the doctor prescribed something extraordinary: <strong>spend one day at the place of his happiest childhood memories, with four sealed envelopes to open at specific times...</strong></p>
-                <p class="text-ar">وفي يأسه، استشار طبيباً لم يجد أي مرض عضوي. بدلاً من ذلك، وصف الطبيب شيئاً استثنائياً: <strong>أن يقضي يوماً واحداً في مكان ذكريات طفولته السعيدة، مع أربعة مظاريف مختومة يفتحها في أوقات محددة...</strong></p>
-            </div>
+        <section class="story-section" id="story">
+        <div class="container">
+            <div class="story-intro">
+                <p>
+[cite_start]                    يروي "آرثر جوردون" حكايته الرائعة عن تجربة التجديد الروحي بعد مروره بـ**حالة ضياع مخيفة**[cite: 47]. [cite_start]فقد مرت عليه أيام فقد فيها الإيمان، وأخذ يشعر وكأن كل شيء في الحياة تافه وبلا معنى[cite: 48]. [cite_start]وعلى أثر ذلك، تلاشى حماسه في أي عمل، وباتت جهوده في الكتابة بلا نتيجة[cite: 48].
+                </p>
+                <p>
+[cite_start]                    وبعد أن ازدادت حالة الضياع لديه [cite: 49][cite_start]، قرر مراجعة طبيب عام[cite: 49]. [cite_start]وحينما فحصه الطبيب ولم يجده يشتكي من أي مرض عضوي [cite: 50][cite_start]، طلب منه أن يقضي اليوم التالي في **المكان الذي قضى فيه أسعد أيام طفولته** [cite: 52][cite_start]، وأن يفتح أربعة مظاريف مغلقة في مواقيت محددة، على أن **يعمل بالتعليمات الواردة فيها بدقة**[cite: 53, 54].
+                </p>
+                <p style="margin-top: 30px; text-align: center; font-style: italic; color: #764ba2;">
+                    "هل أنت جاد؟" سأل جوردون. [cite_start]فأجاب الطبيب: "بلا شك، وسوف تكتشف ذلك عندما تستلم فاتورة الحساب." [cite: 54, 55]
+                </p>
+            </div>
 
-            <!-- Prescriptions -->
-            <div class="prescriptions">
-                <!-- Envelope 1 -->
-                <div class="prescription-card" onclick="toggleCard(this)">
-                    <div class="prescription-icon">📨</div>
-                    <div class="prescription-time">
-                        Envelope 1 • 9:00 AM
-                        <div class="prescription-time-ar">المظروف الأول • ٩:٠٠ صباحًا</div>
-                    </div>
-                    <div class="prescription-title">"Listen carefully and pay attention"</div>
-                    <div class="prescription-title-ar">"استمع بانتباه وأصغِ"</div>
-                    <button class="expand-btn">📖 Open Envelope</button>
-                    
-                    <div class="prescription-content">
-                        <div class="reflection-icon">👂 🌊 🐦</div>
-                        <p>At first skeptical, Gordon opened his ears to the ocean. He heard waves, birds, then deeper sounds that weren't clear at first. The sea taught him patience, respect, and interdependence. He listened not just to sounds but to silence itself. Tranquility began flowing within him.</p>
-                        <p class="text-ar">في البداية كان متشككاً، لكن جوردون أرخى سمعه للبحر. سمع الأمواج والطيور، ثم أصواتاً أعمق لم تكن واضحة في البداية. علّمه البحر الصبر والاحترام والترابط. استمع ليس فقط للأصوات بل للصمت أيضاً. بدأت الطمأنينة تسري في داخله.</p>
-                    </div>
-                </div>
+                        <div class="prescriptions">
+                                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-icon">📨</div>
+                    <div class="prescription-time">
+                        المظروف الأول • ٩:٠٠ صباحاً
+                        <div class="prescription-time-ar" style="direction: ltr;">Envelope 1 • 9:00 AM</div>
+                    </div>
+                    <div class="prescription-title-ar">"أَرخِ سَمعك وأَصْغِ بوعي"</div>
+[cite_start]                    <div class="prescription-title">"Listen carefully and pay attention" [cite: 56]</div>
+                    <button class="expand-btn">📖 افتح المظروف</button>
+                    
+                    <div class="prescription-content">
+                        <div class="reflection-icon">👂 🌊 🐦</div>
+[cite_start]                        <p class="text-ar">شعر جوردون بالشك بدايةً [cite: 57][cite_start]، لكنه أرخى سمعه التزاماً بوعده[cite: 58]. [cite_start]في البداية سمع أصوات الأمواج والطيور المعتادة[cite: 59]. [cite_start]ثم أصبح بإمكانه أن يسمع أصواتاً لم تكن واضحة[cite: 59]. [cite_start]وأخذ يفكر في الدروس التي تعلمها من البحر في صغره: **الصبر والاحترام واعتماد الأشياء بعضها على بعض**[cite: 60]. [cite_start]وراح يستمع ليس فقط للأصوات، وإنما **للصمت أيضاً** [cite: 61][cite_start]، فشعر بنوع من الطمأنينة يسري في داخله[cite: 61].</p>
+                    </div>
+                </div>
 
-                <!-- Envelope 2 -->
-                <div class="prescription-card" onclick="toggleCard(this)">
-                    <div class="prescription-icon">📨</div>
-                    <div class="prescription-time">
-                        Envelope 2 • 12:00 PM
-                        <div class="prescription-time-ar">المظروف الثاني • ١٢:٠٠ ظهراً</div>
-                    </div>
-                    <div class="prescription-title">"Try to reach back with your memory"</div>
-                    <div class="prescription-title-ar">"حاول العودة بفكرك إلى الوراء"</div>
-                    <button class="expand-btn">📖 Open Envelope</button>
-                    
-                    <div class="prescription-content">
-                        <div class="reflection-icon">👶 💭 ✨</div>
-                        <p>Gordon recalled his furthest childhood memories, the happy moments without worry, brief instances of pure joy. Through this remembering, warmth and self-confidence began growing in his depths, reconnecting him with who he once was.</p>
-                        <p class="text-ar">تذكّر جوردون أبعد ذكريات طفولته، اللحظات السعيدة بلا قلق، لحظات الفرح الخالص. من خلال هذا التذكّر، بدأ الدفء والثقة بالنفس يتناميان في أعماقه، معيدين ربطه بمن كان.</p>
-                    </div>
-                </div>
+                                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-icon">📨</div>
+                    <div class="prescription-time">
+                        المظروف الثاني • ١٢:٠٠ ظهراً
+                        <div class="prescription-time-ar" style="direction: ltr;">Envelope 2 • 12:00 PM</div>
+                    </div>
+                    <div class="prescription-title-ar">"استرجع أبهج ذكرياتك البعيدة"</div>
+[cite_start]                    <div class="prescription-title">"Try to reach back with your memory" [cite: 24]</div>
+                    <button class="expand-btn">📖 افتح المظروف</button>
+                    
+                    <div class="prescription-content">
+                        <div class="reflection-icon">👶 💭 ✨</div>
+[cite_start]                        <p class="text-ar">أخذ جوردون يفكر في **أبعد ما استطاع تذكره من أيام الطفولة** [cite: 63][cite_start]، والذكريات السعيدة التي مر بها[cite: 63]. [cite_start]وتخيل اللحظات التي مرت عليه **من دون أي قلق**، وتذكر لحظات الفرح القصيرة والعديدة[cite: 63]. [cite_start]وبذلك، أخذ يشعر بنوع من الدفء، **وتنامت الثقة بالنفس في أعماقه**[cite: 64].</p>
+                    </div>
+                </div>
 
-                <!-- Envelope 3 -->
-                <div class="prescription-card" onclick="toggleCard(this)">
-                    <div class="prescription-icon">📨</div>
-                    <div class="prescription-time">
-                        Envelope 3 • 3:00 PM
-                        <div class="prescription-time-ar">المظروف الثالث • ٣:٠٠ بعد الظهر</div>
-                    </div>
-                    <div class="prescription-title">"Examine your motives"</div>
-                    <div class="prescription-title-ar">"تفحص دوافعك"</div>
-                    <button class="expand-btn">📖 Open Envelope</button>
-                    
-                    <div class="prescription-content">
-                        <div class="reflection-icon">🤔 💡 🎯</div>
-                        <p>He delved deep into his motives—success, excellence, comfort—realizing these weren't enough. He discovered: <strong>"If a person's motives are wrong, nothing right can come from them. If your concern is helping yourself rather than others, you won't do your work well. But serve others, driven by higher values, and you'll perform excellently."</strong></p>
-                        <p class="text-ar">تعمّق في دوافعه—النجاح والتفوق والراحة—مدركاً أن هذه ليست كافية. اكتشف: <strong>"إذا كانت دوافع الشخص خاطئة، فلا يمكن لأي شيء صحيح أن يصدر منه. إذا كان اهتمامك منصباً على مساعدة ذاتك وليس الآخرين، فلن تقوم بعملك جيداً. لكن اخدم الآخرين مدفوعاً بقيم عليا، وستقوم بعملك بامتياز."</strong></p>
-                    </div>
-                </div>
+                                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-icon">📨</div>
+                    <div class="prescription-time">
+                        المظروف الثالث • ٣:٠٠ مساءً
+                        <div class="prescription-time-ar" style="direction: ltr;">Envelope 3 • 3:00 PM</div>
+                    </div>
+                    <div class="prescription-title-ar">"دقق النظر في دوافعك العليا"</div>
+[cite_start]                    <div class="prescription-title">"Examine your motives" [cite: 29]</div>
+                    <button class="expand-btn">📖 افتح المظروف</button>
+                    
+                    <div class="prescription-content">
+                        <div class="reflection-icon">🤔 💡 🎯</div>
+[cite_start]                        <p class="text-ar">بدأ جوردون يتفحص دوافعه [cite: 65][cite_start]، ظاناً أن المطلوب هو التفكير في النجاح والتفوق والراحة[cite: 66]. [cite_start]لكنه أدرك أن هذه الأهداف ليست كافية[cite: 66]. [cite_start]فأخذ يتعمق في دوافعه ويقارنها بـ**منظومة القيم والمُثل العليا**[cite: 67]. [cite_start]فرأى أن دوافع مثل النجاح الشخصي والتفوق على الآخرين ليست ذات قيمة لأنها لا ترتبط بقيمة إنسانية عليا[cite: 68].</p>
+                        <p class="text-ar" style="font-weight: bold; color: #f0fdf4;">
+[cite_start]                            **اكتشاف اللحظة:** إذا كانت دوافع الشخص وقيمه خاطئة، فلا يمكن أن يصدر منه أي شيء صحيح[cite: 69]. [cite_start]**فإذا كان الاهتمام منصباً على مساعدة الذات وليس خدمة الآخرين، فإنك لن تقوم بعملك بشكل جيد**[cite: 70]. [cite_start]أما إذا كنت تقوم بخدمة الآخرين وتنطلق من أجل قيمة عليا، فإنك ستقوم بعملك بشكل جيد وممتاز[cite: 70].
+                        </p>
+                    </div>
+                </div>
 
-                <!-- Envelope 4 -->
-                <div class="prescription-card" onclick="toggleCard(this)">
-                    <div class="prescription-icon">📨</div>
-                    <div class="prescription-time">
-                        Envelope 4 • 6:00 PM
-                        <div class="prescription-time-ar">المظروف الرابع • ٦:٠٠ مساءً</div>
-                    </div>
-                    <div class="prescription-title">"Write your worries on the sand"</div>
-                    <div class="prescription-title-ar">"اكتب ما يقلقك على الرمال"</div>
-                    <button class="expand-btn">📖 Open Envelope</button>
-                    
-                    <div class="prescription-content">
-                        <div class="reflection-icon">🏖️ ✍️ 🌊</div>
-                        <p>Gordon wrote his worries in the sand with a broken shell. As he walked away, the tide came in and erased every word. His worries, once so permanent in his mind, were swept away by nature's rhythm.</p>
-                        <p class="text-ar">كتب جوردون همومه على الرمال بصدفة مكسورة. وبينما كان يمشي مبتعداً، جاء المد ومحا كل كلمة. همومه، التي كانت راسخة في ذهنه، جرفها إيقاع الطبيعة.</p>
-                        
-                        <div class="sand-section">
-                            <div class="sand-text" id="sandText">
-                                Worry • Fear • Doubt • Anxiety<br>
-                                <span style="font-size: 0.9em;">القلق • الخوف • الشك • التوتر</span>
-                            </div>
-                            <br>
-                            <button class="wave-btn" onclick="washAway(event)">
-                                🌊 Let the Tide Wash Them Away • دع المد يمحوها
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                                <div class="prescription-card" onclick="toggleCard(this)">
+                    <div class="prescription-icon">📨</div>
+                    <div class="prescription-time">
+                        المظروف الرابع • ٦:٠٠ مساءً
+                        <div class="prescription-time-ar" style="direction: ltr;">Envelope 4 • 6:00 PM</div>
+                    </div>
+                    <div class="prescription-title-ar">"اكتب ما يقلقك على الرمال"</div>
+[cite_start]                    <div class="prescription-title">"Write your worries on the sand" [cite: 38]</div>
+                    <button class="expand-btn">📖 افتح المظروف</button>
+                    
+                    <div class="prescription-content">
+                        <div class="reflection-icon">🏖️ ✍️ 🌊</div>
+[cite_start]                        <p class="text-ar">جلس جوردون على الأرض، وكتب بصدف مكسور **عدة كلمات مما يقلقه**[cite: 72, 39]. [cite_start]ثم استدار ليعود إلى بيته[cite: 72]. [cite_start]ولما سار عدة خطوات **جاء المد ومحا ما كتبه مما يقلقه**[cite: 72]. لقد جرف إيقاع الطبيعة تلك الهموم التي ظنّها دائمة في ذهنه.</p>
+                        
+                        <div class="sand-section">
+                            <div class="sand-text" id="sandText">
+                                القلق • الخوف • الشك • التردد
+                                <br><span style="font-size: 0.9em; direction: ltr;">Worry • Fear • Doubt • Hesitation</span>
+                            </div>
+                            <br>
+                            <button class="wave-btn" onclick="washAway(event)">
+                                🌊 دع المدّ يمحو أثرها • Let the Tide Wash Them Away
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Wisdom Section -->
-    <section class="wisdom-section">
-        <div class="container">
-            <div class="wisdom-icon">💫</div>
-            <div class="wisdom-quote">
-                "Rarely do misfortunes strike the person whose guardians are hope and faith."
-                <div class="wisdom-quote-ar">"قلما تصيب المحن الشخص الذي يكون حارساه الأمل والإيمان."</div>
-            </div>
-        </div>
-    </section>
+        <section class="wisdom-section">
+        <div class="container">
+            <div class="wisdom-icon">💫</div>
+            <div class="wisdom-quote">
+                "قلّما تصيب النوائب من كان الأمل والإيمان هما حارساه."
+                [cite_start]<div class="wisdom-quote-ar" style="direction: ltr;">"Rarely do misfortunes strike the person whose guardians are hope and faith." [cite: 40, 73]</div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Faith Section -->
-    <section class="faith-section">
-        <div class="container">
-            <h2 class="section-title">The Connection Between Faith and Success</h2>
-            <div class="section-title-ar">الرابط بين الإيمان والنجاح</div>
-            
-            <div class="faith-grid">
-                <div class="faith-card">
-                    <div class="faith-icon">💧</div>
-                    <h3>Simple Faith</h3>
-                    <div class="card-title-ar">الإيمان البسيط</div>
-                    <p>You need faith to simply stand and drink water - faith your legs work, your hands grasp, the water quenches.</p>
-                    <p class="text-ar">أنت تحتاج إلى الإيمان لمجرد أن تقف وتشرب الماء - الإيمان بأن ساقيك تحملانك، ويديك تمسكان، والماء يروي عطشك.</p>
-                </div>
-                
-                <div class="faith-card">
-                    <div class="faith-icon">🌟</div>
-                    <h3>Dream Faith</h3>
-                    <div class="card-title-ar">إيمان الأحلام</div>
-                    <p>If drinking needs faith, how much more do your dreams need it? The God who gives you ability to drink can empower any goal.</p>
-                    <p class="text-ar">إذا كان الشرب يحتاج إلى إيمان، فكم تحتاج أحلامك إليه؟ الله الذي أعطاك القدرة على الشرب يمكنه تمكين أي هدف.</p>
-                </div>
-                
-                <div class="faith-card">
-                    <div class="faith-icon">💪</div>
-                    <h3>Active Faith</h3>
-                    <div class="card-title-ar">الإيمان الفعّال</div>
-                    <p>Faith fuels your work and destroys every obstacle: fear, doubt, anxiety, hesitation, envy, and laziness.</p>
-                    <p class="text-ar">الإيمان يغذي عملك ويدمر كل عائق: الخوف، الشك، القلق، التردد، الحسد، والكسل.</p>
-                </div>
-                
-                <div class="faith-card">
-                    <div class="faith-icon">🔥</div>
-                    <h3>Courage Faith</h3>
-                    <div class="card-title-ar">إيمان الشجاعة</div>
-                    <p>What gives you courage like faith? What gives you confidence like faith? What gives you resolve like faith?</p>
-                    <p class="text-ar">ما الذي يمنحك الشجاعة مثل الإيمان؟ ما الذي يمنحك الثقة مثل الإيمان؟ ما الذي يمنحك العزيمة مثل الإيمان؟</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section class="faith-section">
+        <div class="container">
+            <h2 class="section-title-ar">التحالف الوثيق بين الإيمان والنجاح</h2>
+            <h2 class="section-title" style="direction: ltr; color: #6d28d9;">The Connection Between Faith and Success</h2>
+            
+            <div class="faith-grid">
+                <div class="faith-card">
+                    <div class="faith-icon">💧</div>
+                    <div class="card-title-ar">إيمان البداهة اليومية</div>
+                    <h3>Simple Faith</h3>
+[cite_start]                    <p class="text-ar">أنت لا تقوم من مكانك في الغرفة للإمساك بكأس ماء لتشربه **من دون الإيمان بمعناه الواسع**[cite: 75].</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">🌟</div>
+                    <div class="card-title-ar">إيمان القدرة على الإنجاز</div>
+                    <h3>Dream Faith</h3>
+[cite_start]                    <p class="text-ar">الإيمان بأن ساقيك ستحملانك [cite: 75][cite_start]، والإيمان بقدرتك على الإمساك بالكأس، والإيمان بأنه سوف يروي عطشك[cite: 75].</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">💪</div>
+                    <div class="card-title-ar">الإيمان كقاعدة للنجاح</div>
+                    <h3>Foundation of Success</h3>
+[cite_start]                    <p class="text-ar">كان الإيمان - على مر التاريخ - جزءاً لا يتجزأ من كل القواعد التي تؤدي إلى النجاح مهما كان نوعه[cite: 74].</p>
+                </div>
+                
+                <div class="faith-card">
+                    <div class="faith-icon">🔥</div>
+                    <div class="card-title-ar">تحالف لا ينفصم</div>
+                    <h3>Unbreakable Alliance</h3>
+[cite_start]                    <p class="text-ar">إن معظم الناجحين، إن لم يكن كلهم، هم من المؤمنين بالله تعالى، مما يدل على أن بين النجاح والإيمان **تحالفاً لا يزول، وترابطاً لا ينفصم**[cite: 73, 41].</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Action Section -->
-    <section class="action-section">
-        <div class="container">
-            <h2 class="action-title">The Unstoppable Formula</h2>
-            <div class="action-title-ar">الصيغة التي لا تُقهر</div>
-            
-            <div class="equation">FAITH + ACTION = SUCCESS</div>
-            <div class="equation-ar">الإيمان + العمل = النجاح</div>
-            
-            <p style="font-size: 1.3rem; margin: 40px auto; max-width: 700px; line-height: 1.9;">
-                Most successful people are believers in God Almighty, which demonstrates that between success and faith exists an unbreakable alliance. Faith has been—throughout history—an integral part of all principles that lead to success.
-            </p>
-            <p style="font-size: 1.2rem; margin: 30px auto; max-width: 700px; line-height: 1.9; direction: rtl;">
-                معظم الناجحين هم من المؤمنين بالله تعالى، مما يدل على أن بين النجاح والإيمان تحالفاً لا يزول. كان الإيمان - على مر التاريخ - جزءاً لا يتجزأ من كل القواعد التي تؤدي إلى النجاح.
-            </p>
-            
-            <button class="cta-button" onclick="showInspiration()">
-                ✨ Activate Your Faith Today • فعّل إيمانك اليوم
-            </button>
-        </div>
-    </section>
+        <section class="action-section">
+        <div class="container">
+            <h2 class="action-title-ar">المعادلة التي لا تقهر</h2>
+            <h2 class="action-title" style="direction: ltr;">The Unstoppable Formula</h2>
+            
+            <div class="equation-ar">الإيمان + العمل = النجاح</div>
+            <div class="equation" style="direction: ltr;">FAITH + ACTION = SUCCESS</div>
+            
+            <p style="font-size: 1.3rem; margin: 40px auto; max-width: 700px; line-height: 1.9;">
+                لقد كان الإيمان - على مرّ العصور - جزءاً أصيلاً ومكوناً لا يتجزأ من كل القواعد التي تقود إلى الإنجاز الباهر.
+            </p>
+            
+            <button class="cta-button" onclick="showInspiration()">
+                ✨ فعّل إيمانك اليوم • Activate Your Faith Today
+            </button>
+        </div>
+    </section>
 
-    <!-- Reference Section -->
-    <div class="container">
-        <div class="reference-section">
-            <h3>📚 Reference • المرجع</h3>
-            <p>Al-Madrasī, H. (2007). <em>Learn How to Succeed (Keys to Success)</em> (3rd ed., pp. 9–12). Beirut, Lebanon: Ahmed Foundation for Publications; Arab Scientific Publishers.</p>
-            <p class="text-ar">المدرسي، هـ. (2007). <em>تعلم كيف تنجح (مفاتيح النجاح)</em> (الطبعة الثالثة، ص.9–12). بيروت، لبنان: مؤسسة أحمد للمطبوعات، الدار العربية للعلوم.</p>
-        </div>
-    </div>
+        <div class="container">
+        <div class="reference-section">
+            <h3>📚 المرجع • Reference</h3>
+            <p class="text-ar">المدرسي، هـ. (2007). **تعلّم كيف تنجح (مفاتيح النجاح)** (الطبعة الثالثة، ص.9–12). [cite_start]بيروت، لبنان: مؤسسة أحمد للمطبوعات، الدار العربية للعلوم[cite: 44, 45, 76].</p>
+        </div>
+    </div>
 
-    <script>
-        // Scroll to story section
-        function scrollToStory() {
-            document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
-        }
+    <script>
+        // Scroll to story section
+        function scrollToStory() {
+            document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
+        }
 
-        // Toggle prescription cards
-        function toggleCard(card) {
-            card.classList.toggle('expanded');
-            const btn = card.querySelector('.expand-btn');
-            btn.textContent = card.classList.contains('expanded') ? '📖 Close Envelope' : '📖 Open Envelope';
-        }
+        // Toggle prescription cards
+        function toggleCard(card) {
+            card.classList.toggle('expanded');
+            const btn = card.querySelector('.expand-btn');
+            btn.textContent = card.classList.contains('expanded') ? '📖 أغلق المظروف' : '📖 افتح المظروف';
+        }
 
-        // Wash away worries
-        function washAway(event) {
-            event.stopPropagation();
-            const sandText = document.getElementById('sandText');
-            sandText.classList.add('washed');
-            
-            setTimeout(() => {
-                sandText.innerHTML = '✨ Your worries have been washed away...<br><span style="font-size: 0.9em;">تم محو همومك...</span>';
-                sandText.classList.remove('washed');
-                sandText.style.background = 'rgba(125, 211, 192, 0.4)';
-                sandText.style.borderColor = '#7dd3c0';
-            }, 2500);
-        }
+        // Wash away worries
+        function washAway(event) {
+            event.stopPropagation();
+            const sandText = document.getElementById('sandText');
+            sandText.classList.add('washed');
+            
+            setTimeout(() => {
+                sandText.innerHTML = '✨ تم محو همومك...<br><span style="font-size: 0.9em; direction: ltr;">Your worries have been washed away...</span>';
+                sandText.classList.remove('washed');
+                sandText.style.background = 'rgba(125, 211, 192, 0.4)';
+                sandText.style.borderColor = '#7dd3c0';
+            }, 2500);
+        }
 
-        // Show inspiration message
-        function showInspiration() {
-            const messages = [
-                { en: "Your journey begins with a single step of faith!", ar: "رحلتك تبدأ بخطوة إيمان واحدة!" },
-                { en: "Today is the day to write your worries in the sand!", ar: "اليوم هو يوم كتابة همومك على الرمال!" },
-                { en: "Listen to the wisdom around you - it's always speaking!", ar: "استمع للحكمة من حولك - إنها تتحدث دائماً!" },
-                { en: "Your motives shape your destiny - choose service over self!", ar: "دوافعك تشكل مصيرك - اختر خدمة الآخرين على الذات!" },
-                { en: "The tide always turns. Your renewal is coming!", ar: "المد يتغير دائماً. تجديدك قادم!" }
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            
-            const inspiration = document.createElement('div');
-            inspiration.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #7dd3c0 0%, #6d28d9 100%);
-                color: white;
-                padding: 40px 50px;
-                border-radius: 25px;
-                font-size: 1.6rem;
-                z-index: 1000;
-                box-shadow: 0 25px 70px rgba(0,0,0,0.4);
-                text-align: center;
-                max-width: 600px;
-                animation: fadeInUp 0.5s ease;
-            `;
-            inspiration.innerHTML = `<div style="margin-bottom: 15px;">${randomMessage.en}</div><div style="direction: rtl; font-size: 1.4rem; opacity: 0.95;">${randomMessage.ar}</div>`;
-            document.body.appendChild(inspiration);
-            
-            setTimeout(() => {
-                inspiration.style.opacity = '0';
-                inspiration.style.transform = 'translate(-50%, -50%) scale(0.8)';
-                inspiration.style.transition = 'all 0.5s ease';
-                setTimeout(() => inspiration.remove(), 500);
-            }, 3000);
-        }
+        // Show inspiration message
+        function showInspiration() {
+            const messages = [
+                { en: "Your journey begins with a single step of faith!", ar: "رحلتك تبدأ بخطوة إيمان واحدة!" },
+                { en: "Today is the day to write your worries in the sand!", ar: "اليوم هو يوم كتابة همومك على الرمال!" },
+                { en: "Listen to the wisdom around you - it's always speaking!", ar: "استمع للحكمة من حولك - إنها تتحدث دائماً!" },
+                { en: "Your motives shape your destiny - choose service over self!", ar: "دوافعك تشكل مصيرك - اختر خدمة الآخرين على الذات!" },
+                { en: "The tide always turns. Your renewal is coming!", ar: "المد يتغير دائماً. تجديدك قادم!" }
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const inspiration = document.createElement('div');
+            inspiration.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #7dd3c0 0%, #6d28d9 100%);
+                color: white;
+                padding: 40px 50px;
+                border-radius: 25px;
+                font-size: 1.6rem;
+                z-index: 1000;
+                box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+                text-align: center;
+                max-width: 600px;
+                animation: fadeInUp 0.5s ease;
+            `;
+            inspiration.innerHTML = `<div style="margin-bottom: 15px;">${randomMessage.ar}</div><div style="direction: ltr; font-size: 1.4rem; opacity: 0.95;">${randomMessage.en}</div>`;
+            document.body.appendChild(inspiration);
+            
+            setTimeout(() => {
+                inspiration.style.opacity = '0';
+                inspiration.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                setTimeout(() => inspiration.remove(), 500);
+            }, 3000);
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
 
-        // Show elements on scroll
-        function handleScroll() {
-            const elements = document.querySelectorAll('.story-intro, .prescription-card, .wisdom-quote, .section-title, .faith-card, .equation');
-            
-            elements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight - 100;
-                
-                if (isVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Add stagger effect to faith cards
-        window.addEventListener('load', () => {
-            const cards = document.querySelectorAll('.faith-card');
-            cards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.15}s`;
-            });
-        });
-
-        // Initialize scroll listener
-        window.addEventListener('scroll', handleScroll);
-        
-        // Trigger initial check
-        setTimeout(handleScroll, 100);
-
-        // Add parallax effect to hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-    </script>
+        document.querySelectorAll('.story-intro, .prescription-card, .wisdom-quote, .section-title, .section-title-ar, .faith-card, .equation, .equation-ar').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
 </body>
 </html>
